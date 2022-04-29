@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour {
     [SerializeField] private BaseController controller;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform background;
 
     [SerializeField] private AudioSource audioSource = default;
     [SerializeField] private AudioClip jumpSound = default;
@@ -124,6 +125,7 @@ public class Movement : MonoBehaviour {
         Vector3 localScale = transform.localScale;
         localScale.x *= -1f;
         transform.localScale = localScale;
+        background.localScale = localScale;
         facingRight = !facingRight;
     }
     
