@@ -12,6 +12,7 @@ public class PlayerResources : MonoBehaviour {
     [SerializeField] private GameObject shot = default;
     [SerializeField] private AudioSource audioSource = default;
     [SerializeField] private AudioClip shotSound = default;
+    [SerializeField] private GameObject[] petalos = default;
     private int currAmount;
     private float timer;
     public event Action<int> OnResourcesChange;
@@ -20,6 +21,10 @@ public class PlayerResources : MonoBehaviour {
 
     private void Awake() {
         currAmount = initialAmount;
+
+        for (int i = 0; i < petalos.Length; i++) {
+            petalos[i].gameObject.SetActive(i < initialAmount);
+        }
     }
 
     private void Update() {
@@ -34,6 +39,7 @@ public class PlayerResources : MonoBehaviour {
                 var go = Instantiate(shot, transform.position + offset, Quaternion.identity);
                 go.GetComponent<Shot>().Direction = movement.facingRight ? Vector2.right : Vector2.left;
                 go.SetActive(true);
+                petalos[currAmount - 1].gameObject.SetActive(false);
             }
                 
             --currAmount;
@@ -54,6 +60,7 @@ public class PlayerResources : MonoBehaviour {
         if (other.CompareTag("Resource")) {
             Destroy(other.gameObject);
             ++currAmount;
+            petalos[currAmount - 1].gameObject.SetActive(true);
             OnResourcesChange(currAmount);
         } else if (other.CompareTag("DeathZone")) {
             Die();
