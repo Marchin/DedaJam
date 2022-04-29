@@ -29,12 +29,14 @@ public class PlayerResources : MonoBehaviour {
                 var go = Instantiate(shot, transform.position + offset, Quaternion.identity);
                 go.GetComponent<Shot>().Direction = movement.facingRight ? Vector2.right : Vector2.left;
                 go.SetActive(true);
+            }
                 
-                --currAmount;
-                OnResourcesChange(currAmount);
-                timer = shootInterval;
-            } else {
-                Debug.Log("No ammo");
+            --currAmount;
+            OnResourcesChange(currAmount);
+            timer = shootInterval;
+
+            if (currAmount < 0) {
+                enabled = false;
             }
         }
         
@@ -45,8 +47,12 @@ public class PlayerResources : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Resource")) {
-            ++currAmount;
             Destroy(other.gameObject);
+            ++currAmount;
+            OnResourcesChange(currAmount);
+        }
+        if (other.CompareTag("DeathZone")) {
+            currAmount = -1;
             OnResourcesChange(currAmount);
         }
     }

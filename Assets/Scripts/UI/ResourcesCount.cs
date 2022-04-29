@@ -11,6 +11,6 @@ public class ResourcesCount : MonoBehaviour {
         playerResources = FindObjectOfType<PlayerResources>();
         Debug.Assert(playerResources != null, "Player Resources not found");
         resourcesText.text = playerResources.CurrentAmount.ToString();
-        playerResources.OnResourcesChange += value => resourcesText.text = value.ToString();
+        playerResources.OnResourcesChange += value => resourcesText.text = Mathf.Max(0, value).ToString();
     }
 }
