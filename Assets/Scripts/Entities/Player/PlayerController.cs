@@ -21,8 +21,8 @@ public class PlayerController : BaseController {
         return Input.GetButtonDown("Melee");
     }
 
-    public override bool Range() {
-        return Input.GetButtonDown("Range");
+    public override bool Fire() {
+        return Input.GetButtonDown("Fire1");
     }
 
     public override bool Boost() {

@@ -9,7 +9,7 @@ public abstract class BaseController : MonoBehaviour {
     public abstract bool Jump();
     public abstract bool ReleaseJump();
     public abstract bool Melee();
-    public abstract bool Range();
+    public abstract bool Fire();
     public abstract bool Boost();
     public abstract bool Movement();
     public virtual void OnDrawGizmosSelected() { } 

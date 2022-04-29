@@ -6,20 +6,20 @@ using UnityEngine;
 public class Movement : MonoBehaviour {
     [Header("Walking")]
     [Tooltip("Speed in units per second")]
-    public float movementSpeed;
+    [SerializeField] private float movementSpeed;
 
     [Header("Jump")]
-    public float jumpHeight;
-    public float peakJumpDistance;
-    public float timeToPeakJump = 0.5f;
-    public float fallMultiplier = 1f;
+    [SerializeField] private float jumpHeight;
+    [SerializeField] private float peakJumpDistance;
+    [SerializeField] private float timeToPeakJump = 0.5f;
+    [SerializeField] private float fallMultiplier = 1f;
 
     [Header("References")]
-    public LayerMask groundLayer;
-    public Collider2D col;
-    public Transform center;
-    public BaseController controller;
-    public Rigidbody2D rb;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Collider2D col;
+    [SerializeField] private Transform center;
+    [SerializeField] private BaseController controller;
+    [SerializeField] private Rigidbody2D rb;
 
     public bool facingRight = true;
     public bool isGrounded;
