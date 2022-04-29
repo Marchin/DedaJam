@@ -206,4 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialAmount: 3
+  shootInterval: 1
+  shootOffset: {x: 1, y: 1}
   controller: {fileID: 3137898197659684572}
+  movement: {fileID: 3137898197659684573}
+  shot: {fileID: 6297952381826656940, guid: aec7dc392b19a2642aec3dc566d350d4, type: 3}
