@@ -10,6 +10,8 @@ public class PlayerResources : MonoBehaviour {
     [SerializeField] private BaseController controller = default;
     [SerializeField] private Movement movement = default;
     [SerializeField] private GameObject shot = default;
+    [SerializeField] private AudioSource audioSource = default;
+    [SerializeField] private AudioClip shotSound = default;
     private int currAmount;
     private float timer;
     public event Action<int> OnResourcesChange;
@@ -23,6 +25,8 @@ public class PlayerResources : MonoBehaviour {
     private void Update() {
         if (controller.Fire() && timer <= 0f) {
             if (currAmount > 0) {
+                audioSource.clip = shotSound;
+                audioSource.Play();
                 Vector3 offset = shootOffset;
                 if  (!movement.facingRight) {
                     offset.x = -offset.x;
