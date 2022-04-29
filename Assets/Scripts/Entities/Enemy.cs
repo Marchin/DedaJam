@@ -34,4 +34,10 @@ public class Enemy : MonoBehaviour {
             goingToPointB = true;
         }
     }
+    
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Shot")) {
+            Destroy(other.gameObject);
+        }
+    }
 }
