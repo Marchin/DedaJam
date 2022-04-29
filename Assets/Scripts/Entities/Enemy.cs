@@ -2,25 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformMovement : MonoBehaviour {
+public class Enemy : MonoBehaviour {
     [SerializeField] private float cycleDuration = default;
     [SerializeField] private float distance = default;
     [Range(0f, 1f)] [SerializeField] private float initPoint = 0.5f;
-    [SerializeField] private Vector2 direction = Vector2.right;
     [Header("References")]
     [SerializeField] private Rigidbody2D rb = default;
-    public Vector2 Speed { get; private set; }
     private Vector2 pointA;
     private Vector2 pointB;
-    private Vector2 normalizedDirection;
     private float currentPoint;
     private bool goingToPointB;
 
     private void Awake() {
-        normalizedDirection = direction.normalized;
         currentPoint = initPoint;
-        pointA = (Vector2)transform.position + (normalizedDirection * distance * (1f - initPoint));
-        pointB = (Vector2)transform.position - (normalizedDirection * distance * initPoint);
+        pointA = (Vector2)transform.position + (Vector2.right * distance * (1f - initPoint));
+        pointB = (Vector2)transform.position - (Vector2.right * distance * initPoint);
     }
 
     private void FixedUpdate() {
@@ -28,8 +24,6 @@ public class PlatformMovement : MonoBehaviour {
             Mathf.Max(0f, currentPoint - Time.deltaTime);
 
         rb.position = Vector2.Lerp(pointA, pointB, newPoint / cycleDuration);
-
-        Speed = (goingToPointB ? -normalizedDirection : normalizedDirection) * (distance / cycleDuration);
 
         currentPoint = newPoint;
 
