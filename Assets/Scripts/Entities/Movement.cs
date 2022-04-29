@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +31,7 @@ public class Movement : MonoBehaviour {
     private float speedMultiplier = 1f;
     private bool jumpedToRight;
     private float jumpHorizontalSpeed;
+    private List<PlatformMovement> inContactPlatforms = new List<PlatformMovement>(3);
 
     protected void OnValidate() {
         ComputeValues();
@@ -74,11 +74,15 @@ public class Movement : MonoBehaviour {
 
         if (isGrounded && !wasGrounded) {
             currSpeed = movementSpeed;
+            Vector3 newPos = transform.position;
+            float maxSurface = (rightHitDown.collider != null) ? rightHitDown.collider.bounds.max.y : leftHitDown.collider.bounds.max.y;
+            newPos.y += Mathf.Max(0, maxSurface - newPos.y);
+            transform.position = newPos;
         }
 
         if (isGrounded && velocity.y <= 0f) {
             acceleration.y = 0f;
-            velocity.y = 0f;
+            velocity.y = inContactPlatforms.Count > 0 ? inContactPlatforms[0].Speed.y : 0f;
         } else {
             RaycastHit2D rightHitUp = Physics2D.Raycast(center.position + xOffset, Vector2.up, col.bounds.extents.y + 3f * Physics2D.defaultContactOffset, groundLayer);
             RaycastHit2D leftHitUp = Physics2D.Raycast(center.position - xOffset, Vector2.up, col.bounds.extents.y + 3f * Physics2D.defaultContactOffset, groundLayer);
@@ -99,6 +103,10 @@ public class Movement : MonoBehaviour {
         }
 
         velocity.x = (Utils.FloatsAreEqual(speedMultiplier, 1f)) ? currSpeed * inputX : speedMultiplier * currSpeed * inputX;
+
+        if (inContactPlatforms.Count > 0) {
+            velocity.x += inContactPlatforms[0].Speed.x;
+        }
     }
 
     public void Flip() {
@@ -106,5 +114,21 @@ public class Movement : MonoBehaviour {
         localScale.x *= -1f;
         transform.localScale = localScale;
         facingRight = !facingRight;
+    }
+    
+    private void OnCollisionEnter2D(Collision2D col) {
+        PlatformMovement movement = col.gameObject.GetComponent<PlatformMovement>();
+
+        if (movement != null) {
+            inContactPlatforms.Add(movement);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D col) {
+        PlatformMovement movement = inContactPlatforms.Find(m => m.gameObject == col.gameObject);
+
+        if (movement != null) {
+            inContactPlatforms.Remove(movement);
+        }
     }
 }
