@@ -13,6 +13,7 @@ public class PlayerResources : MonoBehaviour {
     private int currAmount;
     private float timer;
     public event Action<int> OnResourcesChange;
+    public event Action<int> OnVictory;
     public int CurrentAmount => currAmount;
 
     private void Awake() {
@@ -50,10 +51,11 @@ public class PlayerResources : MonoBehaviour {
             Destroy(other.gameObject);
             ++currAmount;
             OnResourcesChange(currAmount);
-        }
-        if (other.CompareTag("DeathZone")) {
+        } else if (other.CompareTag("DeathZone")) {
             currAmount = -1;
             OnResourcesChange(currAmount);
+        } else if (other.CompareTag("Victory")) {
+            OnVictory(currAmount);
         }
     }
 }
