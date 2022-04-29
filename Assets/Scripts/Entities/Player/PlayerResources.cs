@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerResources : MonoBehaviour {
@@ -13,6 +12,8 @@ public class PlayerResources : MonoBehaviour {
     [SerializeField] private GameObject shot = default;
     private int currAmount;
     private float timer;
+    public event Action<int> OnResourcesChange;
+    public int CurrentAmount => currAmount;
 
     private void Awake() {
         currAmount = initialAmount;
@@ -21,7 +22,6 @@ public class PlayerResources : MonoBehaviour {
     private void Update() {
         if (controller.Fire() && timer <= 0f) {
             if (currAmount > 0) {
-                --currAmount;
                 Vector3 offset = shootOffset;
                 if  (!movement.facingRight) {
                     offset.x = -offset.x;
@@ -29,8 +29,10 @@ public class PlayerResources : MonoBehaviour {
                 var go = Instantiate(shot, transform.position + offset, Quaternion.identity);
                 go.GetComponent<Shot>().Direction = movement.facingRight ? Vector2.right : Vector2.left;
                 go.SetActive(true);
+                
+                --currAmount;
+                OnResourcesChange(currAmount);
                 timer = shootInterval;
-                Debug.Log($"Shoot - ({currAmount} shots left)");
             } else {
                 Debug.Log("No ammo");
             }
@@ -45,7 +47,7 @@ public class PlayerResources : MonoBehaviour {
         if (other.CompareTag("Resource")) {
             ++currAmount;
             Destroy(other.gameObject);
-            Debug.Log($"Pick - ({currAmount} shots left)");
+            OnResourcesChange(currAmount);
         }
     }
 }
