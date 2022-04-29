@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4720539702664519353}
   - component: {fileID: 7935714075063157224}
   - component: {fileID: 2858978888961570812}
+  - component: {fileID: 3946478323115760422}
   m_Layer: 3
   m_Name: PlataformaMovilHorizontal
   m_TagString: Untagged
@@ -109,3 +110,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3946478323115760422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3584940158038654095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d7f732614569449a34852ce42b5fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cycleDuration: 3
+  distance: 3
+  initPoint: 0.5
+  direction: {x: 1, y: 0}
