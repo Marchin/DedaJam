@@ -52,10 +52,16 @@ public class PlayerResources : MonoBehaviour {
             ++currAmount;
             OnResourcesChange(currAmount);
         } else if (other.CompareTag("DeathZone")) {
-            currAmount = -1;
-            OnResourcesChange(currAmount);
+            Die();
         } else if (other.CompareTag("Victory")) {
             OnVictory(currAmount);
+        } else if (other.CompareTag("Enemy")) {
+            Die();
         }
+    }
+
+    private void Die() {
+        currAmount = -1;
+        OnResourcesChange(currAmount);
     }
 }

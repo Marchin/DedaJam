@@ -127,6 +127,7 @@ MonoBehaviour:
   distance: 3
   initPoint: 0.5
   direction: {x: 0, y: 1}
+  rb: {fileID: 5807374780491268472}
 --- !u!50 &5807374780491268472
 Rigidbody2D:
   serializedVersion: 4
