@@ -4,6 +4,8 @@ using UnityEngine;
 public class PlayerResources : MonoBehaviour {
     [SerializeField] private int initialAmount = default;
     [SerializeField] private float shootInterval = default;
+    [SerializeField] private int sadFaceValue = default;
+    [SerializeField] private int happyFaceValue = default;
     [SerializeField] private Vector2 shootOffset = default;
 
     [Header("References")]
@@ -14,6 +16,11 @@ public class PlayerResources : MonoBehaviour {
     [SerializeField] private AudioClip shotSound = default;
     [SerializeField] private GameObject[] petalos = default;
     [SerializeField] private AudioClip drinkSound = default;
+    [SerializeField] private Sprite regularFace = default;
+    [SerializeField] private Sprite hitFace = default;
+    [SerializeField] private Sprite sadFace = default;
+    [SerializeField] private Sprite happyFace = default;
+    [SerializeField] private SpriteRenderer face = default;
     private int currAmount;
     private float timer;
     public event Action<int> OnResourcesChange;
@@ -26,6 +33,8 @@ public class PlayerResources : MonoBehaviour {
         for (int i = 0; i < petalos.Length; i++) {
             petalos[i].gameObject.SetActive(i < initialAmount);
         }
+
+        RefreshFace();
     }
 
     private void Update() {
@@ -41,6 +50,7 @@ public class PlayerResources : MonoBehaviour {
                 go.GetComponent<Shot>().Direction = movement.facingRight ? Vector2.right : Vector2.left;
                 go.SetActive(true);
                 petalos[currAmount - 1].gameObject.SetActive(false);
+                RefreshFace();
             }
                 
             --currAmount;
@@ -57,6 +67,16 @@ public class PlayerResources : MonoBehaviour {
         }
     }
 
+    private void RefreshFace() {
+        if (currAmount <= sadFaceValue) {
+            face.sprite = sadFace;
+        } else if (currAmount >= happyFaceValue) {
+            face.sprite = happyFace;
+        } else {
+            face.sprite = regularFace;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Resource")) {
             audioSource.clip = drinkSound;
@@ -65,6 +85,10 @@ public class PlayerResources : MonoBehaviour {
             ++currAmount;
             petalos[currAmount - 1].gameObject.SetActive(true);
             OnResourcesChange(currAmount);
+                RefreshFace();
+            if (currAmount <= sadFaceValue) {
+                face.sprite = sadFace;
+            }
         } else if (other.CompareTag("DeathZone")) {
             Die();
         } else if (other.CompareTag("Victory")) {
@@ -76,6 +100,7 @@ public class PlayerResources : MonoBehaviour {
 
     private void Die() {
         currAmount = -1;
+        face.sprite = hitFace;
         OnResourcesChange(currAmount);
     }
 }

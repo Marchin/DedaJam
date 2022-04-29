@@ -274,6 +274,9 @@ MonoBehaviour:
   controller: {fileID: 3137898197659684572}
   rb: {fileID: 3137898197659684570}
   animator: {fileID: 1676529445277562088}
+  background: {fileID: 0}
+  audioSource: {fileID: 0}
+  jumpSound: {fileID: 0}
   facingRight: 1
   isGrounded: 0
 --- !u!114 &3137898197659684572
@@ -300,8 +303,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c851db7e6f42b5f45b0e05bac2b3a9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialAmount: 3
+  initialAmount: 5
   shootInterval: 1
+  sadFaceValue: 2
+  happyFaceValue: 4
   shootOffset: {x: 1, y: 1}
   controller: {fileID: 3137898197659684572}
   movement: {fileID: 3137898197659684573}
@@ -318,6 +323,12 @@ MonoBehaviour:
   - {fileID: 4037016745920931663}
   - {fileID: 5763817538018836402}
   - {fileID: 6467772647593787476}
+  drinkSound: {fileID: 0}
+  regularFace: {fileID: 21300000, guid: 4199498b08bc88e4b80ee0cc569300c9, type: 3}
+  hitFace: {fileID: 21300000, guid: f10349d98b2544b4ea0f037c4569c887, type: 3}
+  sadFace: {fileID: 21300000, guid: 66715fb2481f40c45af795e13f128dc3, type: 3}
+  happyFace: {fileID: 21300000, guid: 44731418fa9ed0f4db507d3d45657182, type: 3}
+  face: {fileID: 8624070443887736583}
 --- !u!82 &1091700422523450369
 AudioSource:
   m_ObjectHideFlags: 0
