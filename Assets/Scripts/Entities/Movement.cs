@@ -21,6 +21,9 @@ public class Movement : MonoBehaviour {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
 
+    [SerializeField] private AudioSource audioSource = default;
+    [SerializeField] private AudioClip jumpSound = default;
+
     public bool facingRight = true;
     public bool isGrounded;
     private Vector2 acceleration;
@@ -51,6 +54,8 @@ public class Movement : MonoBehaviour {
 
     public void Update() {
         if (isGrounded && controller.Jump()) {
+            audioSource.clip = jumpSound;
+            audioSource.Play();
             velocity.y = jumpSpeed;
             jumpedToRight = velocity.x > 0f;
             currSpeed = jumpHorizontalSpeed;
