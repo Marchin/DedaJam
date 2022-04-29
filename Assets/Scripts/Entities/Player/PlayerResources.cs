@@ -13,6 +13,7 @@ public class PlayerResources : MonoBehaviour {
     [SerializeField] private AudioSource audioSource = default;
     [SerializeField] private AudioClip shotSound = default;
     [SerializeField] private GameObject[] petalos = default;
+    [SerializeField] private AudioClip drinkSound = default;
     private int currAmount;
     private float timer;
     public event Action<int> OnResourcesChange;
@@ -58,6 +59,8 @@ public class PlayerResources : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Resource")) {
+            audioSource.clip = drinkSound;
+            audioSource.Play();
             Destroy(other.gameObject);
             ++currAmount;
             petalos[currAmount - 1].gameObject.SetActive(true);

@@ -1881,7 +1881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4720539702664519353, guid: 11f262ed6847e0a4a8a30778bebff2e1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.9323997
+      value: 4.5922627
       objectReference: {fileID: 0}
     - target: {fileID: 4720539702664519353, guid: 11f262ed6847e0a4a8a30778bebff2e1, type: 3}
       propertyPath: m_LocalScale.y
@@ -1889,7 +1889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4720539702664519353, guid: 11f262ed6847e0a4a8a30778bebff2e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.42
+      value: 11.4395
       objectReference: {fileID: 0}
     - target: {fileID: 4720539702664519353, guid: 11f262ed6847e0a4a8a30778bebff2e1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2311,7 +2311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3889544841736235054, guid: 98f1fdfedc3519a46b2e7222e27a243f, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3889544841736235054, guid: 98f1fdfedc3519a46b2e7222e27a243f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3235,6 +3235,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2945576375838427190, guid: 84780ef3fc56ba74aab56b88e73c3e39, type: 3}
+      propertyPath: shotSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 59949a6e9e53543418fee0f8ae309cee, type: 3}
+    - target: {fileID: 3137898197659684568, guid: 84780ef3fc56ba74aab56b88e73c3e39, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6685684
+      objectReference: {fileID: 0}
+    - target: {fileID: 3137898197659684568, guid: 84780ef3fc56ba74aab56b88e73c3e39, type: 3}
+      propertyPath: m_Size.y
+      value: 2.388
+      objectReference: {fileID: 0}
+    - target: {fileID: 3137898197659684568, guid: 84780ef3fc56ba74aab56b88e73c3e39, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e0f03ccc2fd7a6541b2429246a1cbb06, type: 3}
+    - target: {fileID: 3137898197659684568, guid: 84780ef3fc56ba74aab56b88e73c3e39, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3137898197659684569, guid: 84780ef3fc56ba74aab56b88e73c3e39, type: 3}
       propertyPath: m_RootOrder
       value: 0

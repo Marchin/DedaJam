@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour {
     private Vector2 pointB;
     private float currentPoint;
     private bool goingToPointB;
+    [SerializeField] private AudioSource audioSource = default;
+    [SerializeField] private AudioClip shotSound = default;
 
     private void Awake() {
         currentPoint = initPoint;
@@ -37,7 +39,10 @@ public class Enemy : MonoBehaviour {
     
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Shot")) {
+            audioSource.clip = shotSound;
+            audioSource.Play();
             Destroy(other.gameObject);
+            Destroy(this.gameObject);
         }
     }
 }
