@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour {
     [SerializeField] private Transform center;
     [SerializeField] private BaseController controller;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
 
     public bool facingRight = true;
     public bool isGrounded;
@@ -65,6 +66,8 @@ public class Movement : MonoBehaviour {
         HorizontalMovement();
         velocity = velocity + acceleration * Time.deltaTime;
         rb.velocity = velocity;
+
+        animator.SetBool("Walking", Mathf.Abs(velocity.x) > 0.1f);
     }
 
     private void VerticalMovement() {

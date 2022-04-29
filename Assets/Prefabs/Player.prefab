@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 3137898197659684572}
   - component: {fileID: 2945576375838427190}
   - component: {fileID: 1091700422523450369}
+  - component: {fileID: 1676529445277562088}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -180,6 +181,7 @@ MonoBehaviour:
   center: {fileID: 3137898197317955824}
   controller: {fileID: 3137898197659684572}
   rb: {fileID: 3137898197659684570}
+  animator: {fileID: 1676529445277562088}
   facingRight: 1
   isGrounded: 0
 --- !u!114 &3137898197659684572
@@ -310,3 +312,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1676529445277562088
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137898197659684575}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d9ac297b0c78e7042a218bf5dead9258, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
