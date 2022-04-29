@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
 public class TryAgain : MonoBehaviour {
-    [SerializeField] private TextMeshProUGUI _tryAgain = default;
-    [SerializeField] private TextMeshProUGUI _victory = default;
     [SerializeField] private TextMeshProUGUI _score = default;
+    [SerializeField] private Image _background = default;
+    [SerializeField] private Sprite _victoryImage = default;
+    [SerializeField] private Sprite _defeatImage = default;
 
     private void Start() {
         transform.GetChild(0).gameObject.SetActive(false);
@@ -13,17 +15,15 @@ public class TryAgain : MonoBehaviour {
         playerResources.OnResourcesChange += value => {
             if (value < 0) {
                 transform.GetChild(0).gameObject.SetActive(true);
-                _tryAgain.gameObject.SetActive(true);
-                _victory.gameObject.SetActive(false);
                 _score.gameObject.SetActive(false);
+                _background.sprite = _defeatImage;
                 Time.timeScale = 0f;
             }
         };
         playerResources.OnVictory += value => {
             transform.GetChild(0).gameObject.SetActive(true);
-            _tryAgain.gameObject.SetActive(false);
-            _victory.gameObject.SetActive(true);
             _score.gameObject.SetActive(true);
+            _background.sprite = _victoryImage;
             _score.text = $"SCORE: {value}";
             Time.timeScale = 0f;
         };
