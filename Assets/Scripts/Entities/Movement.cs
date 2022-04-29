@@ -33,6 +33,10 @@ public class Movement : MonoBehaviour {
     private float jumpHorizontalSpeed;
     private List<PlatformMovement> inContactPlatforms = new List<PlatformMovement>(3);
 
+    private void Awake() {
+        ComputeValues();
+    }
+
     protected void OnValidate() {
         ComputeValues();
     }
@@ -76,7 +80,7 @@ public class Movement : MonoBehaviour {
             currSpeed = movementSpeed;
             Vector3 newPos = transform.position;
             float maxSurface = (rightHitDown.collider != null) ? rightHitDown.collider.bounds.max.y : leftHitDown.collider.bounds.max.y;
-            newPos.y += Mathf.Max(0, maxSurface - newPos.y);
+            newPos.y += Mathf.Max(Utils.PhysicsDelta, maxSurface - newPos.y);
             transform.position = newPos;
         }
 
@@ -98,7 +102,6 @@ public class Movement : MonoBehaviour {
         inputX = controller.Horizontal();
 
         if ((facingRight && (inputX < 0f)) || (!facingRight && (inputX > 0f))) {
-
             Flip();
         }
 
